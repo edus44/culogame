@@ -1,9 +1,10 @@
 <template>
-  <div v-if="G" id="app">
+  <div id="app">
     <div v-for="player in G.players" class="player">
       {{ player }}
-
     </div>
+    {{ G.match }}
+    {{ ctx.currentPlayer }}
   </div>
 </template>
 

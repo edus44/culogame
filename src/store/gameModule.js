@@ -16,7 +16,7 @@ const state = {
   G: null,
   ctx: null,
   config: {
-    numPlayers: 3,
+    numPlayers: 4,
     /* Multiplayer options */
     // playerID: 'def',
     // gameID: 'def',
