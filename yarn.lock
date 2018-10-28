@@ -7926,9 +7926,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-cli-plugin-boardgame@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-boardgame/-/vue-cli-plugin-boardgame-1.0.3.tgz#bdbcbff3f40d85262f5a9c529cbb154fc016f63b"
+vue-cli-plugin-boardgame@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-boardgame/-/vue-cli-plugin-boardgame-1.0.5.tgz#2fb49227a1c3659aeeb14bd96b0c04926efe4ffb"
   dependencies:
     "@babel/preset-react" "^7.0.0"
     react "^16.6.0"
