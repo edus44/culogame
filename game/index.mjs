@@ -19,17 +19,28 @@ const game = boardgame.Game({
       {
         name: 'deal',
         onPhaseBegin: produce((G, ctx) => {
+          // Get shuffled deck
           const deck = ctx.random.Shuffle(generateDeck())
+
+          // Deal cards
           deck.forEach((card, i) => {
             const playerId = i % ctx.numPlayers
             G.players[playerId].hand.push(card)
           })
+
+          // TODO: Sort by rank
+          G.players.forEach(player => player.hand.sort())
+
+          // Go next phase
           ctx.events.endPhase()
         }),
       },
       {
         name: 'round',
         allowedMoves: ['play'],
+        onPhaseEnd: produce((G, ctx) => {
+          G.match = []
+        }),
       },
     ],
   },
