@@ -51,6 +51,10 @@ export const play = produce((G, ctx, ...cards) => {
   debug('played OK')
 })
 
-export const pass = produce((G, ctx, ...cards) => {
+export const finish = produce((G, ctx, ...cards) => {
   ctx.events.endPhase('round')
+})
+
+export const pass = produce((G, ctx, ...cards) => {
+  ctx.events.endTurn()
 })

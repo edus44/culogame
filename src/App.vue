@@ -19,6 +19,7 @@
     <button @click="selected=[]">clear</button>
     <button @click="play">play {{ selected }}</button>
     <hr>
+    <button @click="finish">finish</button>
     <button @click="pass">pass</button>
   </div>
 </template>
@@ -43,6 +44,9 @@ export default {
     },
     pass() {
       this.move({ name: 'pass' })
+    },
+    finish() {
+      this.move({ name: 'finish' })
     },
     select(card) {
       if (this.selected.includes(card)) {

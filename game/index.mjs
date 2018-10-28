@@ -39,7 +39,7 @@ const game = boardgame.Game({
       },
       {
         name: 'round',
-        allowedMoves: ['play', 'pass'],
+        allowedMoves: ['play', 'pass', 'finish'],
         onPhaseEnd: produce((G, ctx) => {
           debug('round finished')
           G.match = []
