@@ -18,7 +18,7 @@ const state = {
   config: {
     numPlayers: 4,
     /* Multiplayer options */
-    // playerID: 'def',
+    // playerID: location.search.slice(1),
     // gameID: 'def',
     // multiplayer: process.env.NODE_ENV === 'production' ? true : { server: 'localhost:8000' },
   },
