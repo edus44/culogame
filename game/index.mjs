@@ -3,7 +3,9 @@ import { generateDeck } from './deck.mjs'
 import immer from 'immer'
 import * as moves from './moves'
 import _ from 'lodash'
+import Debug from 'debug'
 
+const debug = Debug('app:game')
 const { produce } = immer
 
 const game = boardgame.Game({
@@ -37,8 +39,9 @@ const game = boardgame.Game({
       },
       {
         name: 'round',
-        allowedMoves: ['play'],
+        allowedMoves: ['play', 'pass'],
         onPhaseEnd: produce((G, ctx) => {
+          debug('round finished')
           G.match = []
         }),
       },

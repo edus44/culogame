@@ -15,7 +15,7 @@ export const play = produce((G, ctx, ...cards) => {
     return debug('Num cards should be between 1-4')
   }
 
-  // Check player has this cards
+  // Check player has these cards
   const join = _.intersection(player.hand, cards)
   if (join.length !== cards.length) {
     return debug('Player do not have these cards in hand')
@@ -49,4 +49,8 @@ export const play = produce((G, ctx, ...cards) => {
   ctx.events.endTurn()
 
   debug('played OK')
+})
+
+export const pass = produce((G, ctx, ...cards) => {
+  ctx.events.endPhase('round')
 })
