@@ -17,6 +17,12 @@ const game = boardgame.Game({
       hand: [],
     })),
   }),
+  playerView: produce((G, ctx, playerID) => {
+    G.players.forEach((player, id) => {
+      if (id === (playerID | 0)) return player
+      player.hand = player.hand.map(card => null)
+    })
+  }),
   moves: { ...moves },
   flow: {
     phases: [

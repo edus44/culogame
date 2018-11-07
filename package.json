@@ -1,13 +1,21 @@
 {
-  "name": "vue-boilerplate",
+  "name": "culogame",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "vue-cli-service build",
+    "build:dist": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve --open --copy",
     "start": "node --experimental-modules server",
-    "start:dev": "nodemon -w game -w server --exec yarn start "
+    "start:dev": "nodemon -w game -w server --exec yarn start",
+    "deploy": "yarn build:dist; now --public"
+  },
+  "now": {
+    "files": [
+      "dist",
+      "server",
+      "game"
+    ]
   },
   "dependencies": {
     "boardgame.io": "^0.26.3",
