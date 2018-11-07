@@ -19,8 +19,11 @@
     <button @click="selected=[]">clear</button>
     <button @click="play">play {{ selected }}</button>
     <hr>
-    <button @click="finish">finish</button>
     <button @click="pass">pass</button>
+    <div v-if="ctx.phase=='finish'">
+      <h5>podium</h5>
+      {{ G.podium }}
+    </div>
   </div>
 </template>
 
@@ -41,12 +44,11 @@ export default {
     ...mapActions('game', ['init', 'move']),
     play() {
       this.move({ name: 'play', args: this.selected })
+      this.selected = []
     },
     pass() {
       this.move({ name: 'pass' })
-    },
-    finish() {
-      this.move({ name: 'finish' })
+      this.selected = []
     },
     select(card) {
       if (this.selected.includes(card)) {

@@ -45,16 +45,22 @@ export const play = produce((G, ctx, ...cards) => {
   // Add cards to match
   G.match.push(cards)
 
+  // Save last player
+  G.lastPlayed = ctx.currentPlayer
+
+  // Save in podium if not cards in hand
+  if (!player.hand.length) {
+    G.podium.push(ctx.currentPlayer)
+  }
+
   // Ends player turn
   ctx.events.endTurn()
 
   debug('played OK')
 })
 
-export const finish = produce((G, ctx, ...cards) => {
-  ctx.events.endPhase('round')
-})
-
 export const pass = produce((G, ctx, ...cards) => {
+  if (!G.match.length) return
+
   ctx.events.endTurn()
 })

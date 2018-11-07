@@ -10,7 +10,9 @@ const { produce } = immer
 
 const game = boardgame.Game({
   setup: ctx => ({
+    lastPlayed: null,
     match: [],
+    podium: [],
     players: _.times(ctx.numPlayers, () => ({
       hand: [],
     })),
@@ -39,11 +41,34 @@ const game = boardgame.Game({
       },
       {
         name: 'round',
-        allowedMoves: ['play', 'pass', 'finish'],
-        onPhaseEnd: produce((G, ctx) => {
-          debug('round finished')
+        allowedMoves: ['play', 'pass'],
+        onPhaseBegin: produce((G, ctx) => {
+          debug('round begin')
           G.match = []
+          G.lastPlayed = null
         }),
+        onTurnBegin: produce((G, ctx) => {
+          // Finish game if alone in active players
+          if (G.podium.length === ctx.numPlayers - 1) {
+            G.podium.push(ctx.currentPlayer)
+            return ctx.events.endPhase('finish')
+          }
+          // End turn if current is in podium
+          if (G.podium.includes(ctx.currentPlayer)) {
+            return ctx.events.endTurn()
+          }
+          // Ends phase if current is the last who played
+          if (G.lastPlayed === ctx.currentPlayer) {
+            return ctx.events.endPhase('round')
+          }
+          // If last played is in podium, assign it to current
+          if (G.podium.includes(G.lastPlayed)) {
+            G.lastPlayed = ctx.currentPlayer
+          }
+        }),
+      },
+      {
+        name: 'finish',
       },
     ],
   },
